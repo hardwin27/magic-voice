@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Asset/SansitaSwashed-VariableFont_wght.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=1]
+size = 40
+font_data = ExtResource( 1 )
+
+[node name="MainScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0.0117647, 0.121569, 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 408.0
+margin_top = 128.0
+margin_right = 616.0
+margin_bottom = 208.0
+custom_fonts/font = SubResource( 1 )
+text = "Magic Voice"
