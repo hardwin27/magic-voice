@@ -2,8 +2,10 @@ extends Node2D
 
 onready var _spawners = [$Spawner, $Spawner2, $Spawner3, $Spawner4, $Spawner5]
 onready var _score_label = $UI/Score 
+onready var _health_label = $UI/HealthCounter
 
 var _score = 0
+var _health = 5
 var _rng = RandomNumberGenerator.new()
 var _alphabet = ['A', 'I', 'U', 'E', 'O']
 var _already_spawned = [false, false, false, false, false]
@@ -21,6 +23,7 @@ var _spawn_limit = 1
 
 func _ready():
 	_rng.randomize()
+	update_health()
 
 
 func _unhandled_key_input(event):
@@ -29,7 +32,7 @@ func _unhandled_key_input(event):
 	)
 	for enemy in _spawned_enemy:
 		if enemy.get_command_label() == key_pressed:
-			enemy.shouted(25)
+			enemy.shouted(100)
 
 
 func _on_SpawnTimer_timeout():
@@ -41,7 +44,7 @@ func _on_SpawnTimer_timeout():
 		if _spawn_interval > 1:
 			_spawn_interval -= 1
 	if _time_pass % _enemy_speed_increase_interaval == 0:
-		if _enemy_speed < 200:
+		if _enemy_speed < 150:
 			_enemy_speed += 50
 	if _time_pass % _spawn_limit_increase_interval == 0:
 		if _spawn_limit < 3 :
@@ -59,8 +62,18 @@ func _on_Hitbox_body_entered(body):
 			_spawned_enemy.remove(removed_index)
 			_spawned_here[empty_spawner_index] = null
 			_already_spawned[_alphabet.find(alphabet)] = false
-			enemy.queue_free()
+			enemy.set_speed(0)
+			enemy.get_node("AnimationPlayer").play("Explode")
 		removed_index += 1
+	
+	_health -= 1
+	if _health <= 0:
+		$UI/Overlay.player_end(_score)
+	update_health()
+
+
+func update_health():
+	_health_label.text = "x %s" % _health
 
 
 func spawn():
@@ -122,7 +135,7 @@ func enemy_death(alphabet):
 			_spawned_enemy.remove(removed_index)
 			_spawned_here[empty_spawner_index] = null
 			_already_spawned[_alphabet.find(alphabet)] = false
-			enemy.queue_free()
+#			enemy.queue_free()
 			_score += 1
 			_score_label.text = str(_score)
 		removed_index += 1
