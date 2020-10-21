@@ -119,12 +119,13 @@ text = "Paused"
 
 [node name="Pause2" type="Label" parent="UI/Overlay"]
 visible = false
-margin_left = 312.0
+margin_left = 296.0
 margin_top = 280.0
-margin_right = 770.0
+margin_right = 754.0
 margin_bottom = 317.0
 custom_fonts/font = SubResource( 4 )
-text = "Press SPACE to continue, R to restart"
+text = "Press ESC to continue, R to restart"
+align = 1
 
 [node name="GameOver" type="Label" parent="UI/Overlay"]
 visible = false

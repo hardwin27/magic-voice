@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Asset/New Piskel.png" type="Texture" id=1]
 [ext_resource path="res://Object/Enemy.gd" type="Script" id=2]
 [ext_resource path="res://Asset/Effect_more_red.png" type="Texture" id=3]
+[ext_resource path="res://Asset/explosion01.wav" type="AudioStream" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 25.2982
@@ -146,4 +147,7 @@ __meta__ = {
 autoplay = "Spin"
 anims/Explode = SubResource( 3 )
 anims/Spin = SubResource( 2 )
+
+[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

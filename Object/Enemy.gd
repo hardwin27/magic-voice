@@ -5,6 +5,7 @@ onready var _sprite = $Sprite
 onready var _explosion = $Explosion
 onready var _anim_player = $AnimationPlayer
 
+
 var _drop_speed = Vector2(0, 100)
 var _health = 100
 
