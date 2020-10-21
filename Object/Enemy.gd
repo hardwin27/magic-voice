@@ -4,7 +4,7 @@ onready var _command_label = $Command
 onready var _sprite = $Sprite
 onready var _explosion = $Explosion
 onready var _anim_player = $AnimationPlayer
-
+onready var _explosion_sound = $ExplosionSound
 
 var _drop_speed = Vector2(0, 100)
 var _health = 100
@@ -36,4 +36,5 @@ func shouted(damage):
 	if _health <= 0:
 		get_parent().enemy_death(get_command_label())
 		_drop_speed = Vector2(0, 0)
+		_explosion_sound.play()
 		_anim_player.play("Explode")

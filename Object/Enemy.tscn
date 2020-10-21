@@ -10,7 +10,6 @@ radius = 25.2982
 
 [sub_resource type="Animation" id=3]
 resource_name = "Explode"
-length = 0.5
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:visible")
@@ -31,10 +30,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ true, false ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Explosion:frame")
@@ -118,6 +117,7 @@ tracks/3/keys = {
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+visible = false
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 
@@ -127,12 +127,14 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 vframes = 3
 hframes = 3
-frame = 1
+frame = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 1 )
 
 [node name="Command" type="Label" parent="."]
+visible = false
 margin_left = -16.0
 margin_top = -16.0
 margin_right = 16.0

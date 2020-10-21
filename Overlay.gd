@@ -1,6 +1,7 @@
 extends Control
 
 onready var _scene_tree = get_tree()
+onready var _game_over = $GameOverOst
 
 var _can_pause = true
 
@@ -44,3 +45,4 @@ func player_end(score):
 	get_node("Score").visible = true
 	get_node("Reload").visible = true
 	get_node("Score").text = str(score)
+	_game_over.play()

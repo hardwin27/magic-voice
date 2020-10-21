@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Level.gd" type="Script" id=1]
 [ext_resource path="res://Asset/SansitaSwashed-VariableFont_wght.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Asset/mountain_full_background1.png" type="Texture" id=3]
 [ext_resource path="res://Asset/heart pixel art 64x64.png" type="Texture" id=4]
 [ext_resource path="res://Overlay.gd" type="Script" id=5]
+[ext_resource path="res://Asset/GAMEOVER.wav" type="AudioStream" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 512, 40 )
@@ -93,6 +94,7 @@ texture = ExtResource( 4 )
 
 [node name="Overlay" type="Control" parent="UI"]
 pause_mode = 2
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 5 )
@@ -171,5 +173,9 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="GameOverOst" type="AudioStreamPlayer2D" parent="UI/Overlay"]
+position = Vector2( 512, 296 )
+stream = ExtResource( 6 )
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]

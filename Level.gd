@@ -64,6 +64,7 @@ func _on_Hitbox_body_entered(body):
 			_already_spawned[_alphabet.find(alphabet)] = false
 			enemy.set_speed(0)
 			enemy.get_node("AnimationPlayer").play("Explode")
+			enemy.get_node("ExplosionSound").play()
 		removed_index += 1
 	
 	_health -= 1
